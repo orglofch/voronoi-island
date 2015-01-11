@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{FA5CF105-22E0-455A-BBFB-C5CC52097992}</ProjectGuid>
+    <RootNamespace>StoryBoardHeroes</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\lib\glew-1.11.0\include;C:\lib\boost-1.56.0;C:\lib\libnoise-1.0.0\include;C:\lib\SFML-2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SFML_DYNAMIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\lib\glew-1.11.0\lib;C:\lib\libnoise-1.0.0\bin;C:\lib\SFML-2.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libnoise.lib;sfml-main-d.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;sfml-network-d.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>C:\lib\SFML-2.1\include;C:\lib\libnoise-1.0.0\include;C:\lib\boost-1.56.0;C:\lib\glew-1.11.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SFML_DYNAMIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>libnoise.lib;sfml-main.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib;sfml-audio.lib;sfml-network.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\lib\SFML-2.1\lib;C:\lib\libnoise-1.0.0\bin;C:\lib\glew-1.11.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="AABB.hpp" />
+    <ClInclude Include="Action.hpp" />
+    <ClInclude Include="AISystem.hpp" />
+    <ClInclude Include="Algebra.hpp" />
+    <ClInclude Include="AIComponent.hpp" />
+    <ClInclude Include="AnimationComponent.hpp" />
+    <ClInclude Include="AnimationSystem.hpp" />
+    <ClInclude Include="Assertion.hpp" />
+    <ClInclude Include="AudioComponent.hpp" />
+    <ClInclude Include="AudioSystem.hpp" />
+    <ClInclude Include="Biome.hpp" />
+    <ClInclude Include="BoundingGeometry.hpp" />
+    <ClInclude Include="BoundingCircle.hpp" />
+    <ClInclude Include="Camera.hpp" />
+    <ClInclude Include="CameraComponent.hpp" />
+    <ClInclude Include="Colour.hpp" />
+    <ClInclude Include="Component.hpp" />
+    <ClInclude Include="DamageComponent.hpp" />
+    <ClInclude Include="DamageSystem.hpp" />
+    <ClInclude Include="Intersection.hpp" />
+    <ClInclude Include="LifeSystem.hpp" />
+    <ClInclude Include="LightComponent.hpp" />
+    <ClInclude Include="LogicComponent.hpp" />
+    <ClInclude Include="Map.hpp" />
+    <ClInclude Include="OOB.hpp" />
+    <ClInclude Include="ParticleEmitterComponent.hpp" />
+    <ClInclude Include="Quadtree.hpp" />
+    <ClInclude Include="RenderComponent.hpp" />
+    <ClInclude Include="Engine.hpp" />
+    <ClInclude Include="BitMap.hpp" />
+    <ClInclude Include="Entity.hpp" />
+    <ClInclude Include="EntityFactory.hpp" />
+    <ClInclude Include="EntityManager.hpp" />
+    <ClInclude Include="InputComponent.hpp" />
+    <ClInclude Include="InteractableComponent.hpp" />
+    <ClInclude Include="KDTree.hpp" />
+    <ClInclude Include="LifeComponent.hpp" />
+    <ClInclude Include="Line.hpp" />
+    <ClInclude Include="Location.hpp" />
+    <ClInclude Include="Matrix4x4.hpp" />
+    <ClInclude Include="Message.hpp" />
+    <ClInclude Include="MessageManager.hpp" />
+    <ClInclude Include="MovementComponent.hpp" />
+    <ClInclude Include="MovementSystem.hpp" />
+    <ClInclude Include="Noiseutils.hpp" />
+    <ClInclude Include="OpenGL.hpp" />
+    <ClInclude Include="CollisionComponent.hpp" />
+    <ClInclude Include="CollisionSystem.hpp" />
+    <ClInclude Include="Point.hpp" />
+    <ClInclude Include="Ray.hpp" />
+    <ClInclude Include="RenderSystem.hpp" />
+    <ClInclude Include="RigidBody.hpp" />
+    <ClInclude Include="ShaderManager.hpp" />
+    <ClInclude Include="Skybox.hpp" />
+    <ClInclude Include="Sun.hpp" />
+    <ClInclude Include="SweptAABB.hpp" />
+    <ClInclude Include="System.hpp" />
+    <ClInclude Include="SystemManager.hpp" />
+    <ClInclude Include="TagComponent.hpp" />
+    <ClInclude Include="TagManager.hpp" />
+    <ClInclude Include="Tags.hpp" />
+    <ClInclude Include="TextureManager.hpp" />
+    <ClInclude Include="TileMap.hpp" />
+    <ClInclude Include="Timeline.hpp" />
+    <ClInclude Include="TimelineComponent.hpp" />
+    <ClInclude Include="TimelineSystem.hpp" />
+    <ClInclude Include="TransformComponent.hpp" />
+    <ClInclude Include="Vector.hpp" />
+    <ClInclude Include="WindowManager.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Action.cpp" />
+    <ClCompile Include="AISystem.cpp" />
+    <ClCompile Include="AnimationSystem.cpp" />
+    <ClCompile Include="AudioSystem.cpp" />
+    <ClCompile Include="Biome.cpp" />
+    <ClCompile Include="DamageSystem.cpp" />
+    <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="BitMap.cpp" />
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EntityFactory.cpp" />
+    <ClCompile Include="EntityManager.cpp" />
+    <ClCompile Include="Lifesystem.cpp" />
+    <ClCompile Include="Location.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Matrix4x4.cpp" />
+    <ClCompile Include="MessageManager.cpp" />
+    <ClCompile Include="MovementSystem.cpp" />
+    <ClCompile Include="Noiseutils.cpp" />
+    <ClCompile Include="CollisionSystem.cpp" />
+    <ClCompile Include="RenderSystem.cpp" />
+    <ClCompile Include="RigidBody.cpp" />
+    <ClCompile Include="ShaderManager.cpp" />
+    <ClCompile Include="Sun.cpp" />
+    <ClCompile Include="SystemManager.cpp" />
+    <ClCompile Include="TagManager.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="TileMap.cpp" />
+    <ClCompile Include="Timeline.cpp" />
+    <ClCompile Include="TimelineSystem.cpp" />
+    <ClCompile Include="Vector.cpp" />
+    <ClCompile Include="WindowManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="entity.json" />
+    <None Include="pass_through.frag" />
+    <None Include="tilt_shift.frag" />
+    <None Include="pass_through.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="test.png" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

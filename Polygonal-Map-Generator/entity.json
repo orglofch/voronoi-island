@@ -1,0 +1,14 @@
+{
+	"entities" : [
+		"ranger" : {
+		},
+		"hunter" : {
+		},
+		"warrior" : {
+		},
+		"thief" : {
+		},
+		"assassin" : {
+		},
+	]
+}
