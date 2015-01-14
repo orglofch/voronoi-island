@@ -1,0 +1,57 @@
+﻿Build started 1/14/2015 3:02:56 PM.
+     1>Project "C:\Users\owen\Documents\Visual Studio 2013\Projects\Polygonal-Map-Generator\Polygonal-Map-Generator\Polygonal-Map-Generator.vcxproj" on node 2 (Build target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(381,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Story Board Heroes.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\lib\glew-1.11.0\include" /I"C:\lib\boost-1.56.0" /I"C:\lib\libnoise-1.0.0\include" /I"C:\lib\SFML-2.1\include" /ZI /nologo /W3 /WX- /Od /Oy- /D SFML_DYNAMIC /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Biome.cpp Engine.cpp BitMap.cpp main.cpp Matrix4x4.cpp Noiseutils.cpp Sun.cpp TileMap.cpp Vector.cpp
+         Vector.cpp
+         TileMap.cpp
+     1>c:\users\owen\documents\visual studio 2013\projects\polygonal-map-generator\polygonal-map-generator\tilemap.hpp(13): fatal error C1083: Cannot open include file: 'Sun.hpp': No such file or directory
+         Sun.cpp
+     1>c:\users\owen\documents\visual studio 2013\projects\polygonal-map-generator\polygonal-map-generator\sun.cpp(1): fatal error C1083: Cannot open include file: 'Sun.hpp': No such file or directory
+         Noiseutils.cpp
+     1>c:\users\owen\documents\visual studio 2013\projects\polygonal-map-generator\polygonal-map-generator\noiseutils.cpp(61): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owen\documents\visual studio 2013\projects\polygonal-map-generator\polygonal-map-generator\noiseutils.cpp(62): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owen\documents\visual studio 2013\projects\polygonal-map-generator\polygonal-map-generator\noiseutils.cpp(867): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+         Matrix4x4.cpp
+     1>c:\program files (x86)\microsoft visual studio 12.0\vc\include\xutility(2132): warning C4996: 'std::_Copy_impl': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\xutility(2113) : see declaration of 'std::_Copy_impl'
+                 c:\users\owen\documents\visual studio 2013\projects\polygonal-map-generator\polygonal-map-generator\matrix4x4.hpp(50) : see reference to function template instantiation '_OutIt std::copy<double*,double*>(_InIt,_InIt,_OutIt)' being compiled
+                 with
+                 [
+                     _OutIt=double *
+         ,            _InIt=double *
+                 ]
+         main.cpp
+     1>c:\users\owen\documents\visual studio 2013\projects\polygonal-map-generator\polygonal-map-generator\main.cpp(6): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>c:\program files (x86)\microsoft visual studio 12.0\vc\include\xutility(2132): warning C4996: 'std::_Copy_impl': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\xutility(2113) : see declaration of 'std::_Copy_impl'
+                 c:\users\owen\documents\visual studio 2013\projects\polygonal-map-generator\polygonal-map-generator\matrix4x4.hpp(50) : see reference to function template instantiation '_OutIt std::copy<double*,double*>(_InIt,_InIt,_OutIt)' being compiled
+                 with
+                 [
+                     _OutIt=double *
+         ,            _InIt=double *
+                 ]
+         BitMap.cpp
+     1>c:\users\owen\documents\visual studio 2013\projects\polygonal-map-generator\polygonal-map-generator\bitmap.cpp(88): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\owen\documents\visual studio 2013\projects\polygonal-map-generator\polygonal-map-generator\bitmap.cpp(89): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owen\documents\visual studio 2013\projects\polygonal-map-generator\polygonal-map-generator\bitmap.cpp(90): warning C4244: '=' : conversion from 'double' to 'GLubyte', possible loss of data
+     1>c:\users\owen\documents\visual studio 2013\projects\polygonal-map-generator\polygonal-map-generator\bitmap.cpp(91): warning C4244: '=' : conversion from 'double' to 'GLubyte', possible loss of data
+     1>c:\users\owen\documents\visual studio 2013\projects\polygonal-map-generator\polygonal-map-generator\bitmap.cpp(92): warning C4244: '=' : conversion from 'double' to 'GLubyte', possible loss of data
+     1>c:\users\owen\documents\visual studio 2013\projects\polygonal-map-generator\polygonal-map-generator\bitmap.cpp(93): warning C4244: '=' : conversion from 'float' to 'GLubyte', possible loss of data
+     1>c:\program files (x86)\microsoft visual studio 12.0\vc\include\xutility(2132): warning C4996: 'std::_Copy_impl': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\xutility(2113) : see declaration of 'std::_Copy_impl'
+                 c:\users\owen\documents\visual studio 2013\projects\polygonal-map-generator\polygonal-map-generator\matrix4x4.hpp(50) : see reference to function template instantiation '_OutIt std::copy<double*,double*>(_InIt,_InIt,_OutIt)' being compiled
+                 with
+                 [
+                     _OutIt=double *
+         ,            _InIt=double *
+                 ]
+         Engine.cpp
+     1>c:\users\owen\documents\visual studio 2013\projects\polygonal-map-generator\polygonal-map-generator\tilemap.hpp(13): fatal error C1083: Cannot open include file: 'Sun.hpp': No such file or directory
+         Biome.cpp
+         Generating Code...
+     1>Done Building Project "C:\Users\owen\Documents\Visual Studio 2013\Projects\Polygonal-Map-Generator\Polygonal-Map-Generator\Polygonal-Map-Generator.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:09.04

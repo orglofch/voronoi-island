@@ -13,38 +13,11 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\map">
-      <UniqueIdentifier>{07e085eb-a0ac-4405-a4e1-9c325e428174}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\utility">
       <UniqueIdentifier>{131ee5d4-b887-4c48-a51b-19371226e8d1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\utility">
       <UniqueIdentifier>{3039750c-bcdc-4418-8ab0-c75d444edb6c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\engine">
-      <UniqueIdentifier>{d5b7c6ab-685e-467c-af01-adab2f2e76b8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\engine">
-      <UniqueIdentifier>{2b21878c-08b1-4607-9d14-06d1527d9154}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\engine\entity">
-      <UniqueIdentifier>{3efce1be-794c-4f97-b6b3-b1ef81f34efc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\map">
-      <UniqueIdentifier>{77ee15b8-6aea-456d-909d-0eefc76f52b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\engine\entity">
-      <UniqueIdentifier>{cd30051d-7aa8-4919-981a-cc33e23df56e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\engine\entity\component">
-      <UniqueIdentifier>{340bcf31-95bf-4cc0-932e-d0153748e6be}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\engine\entity\timeline">
-      <UniqueIdentifier>{936bb89b-6cb3-4c11-affb-4cd010b1f48b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\engine\entity\timeline">
-      <UniqueIdentifier>{ccbb1ea9-cc49-4c29-8d8f-ba7f0aec3ff4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files\shader">
       <UniqueIdentifier>{ea01dc73-05d8-48de-a0d8-11cd4a5ac3e2}</UniqueIdentifier>
@@ -52,41 +25,8 @@
     <Filter Include="Resource Files\prefab">
       <UniqueIdentifier>{c2708ba4-cc3b-4cab-b3cb-4958e3cb4de3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\network">
-      <UniqueIdentifier>{3e45374a-d871-4fe8-886a-7191965410e5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\network">
-      <UniqueIdentifier>{4b7b55ef-fd6f-407a-8516-cf821a89bad4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\engine\manager">
-      <UniqueIdentifier>{0bed330d-eede-4bc0-886e-95657fc7601f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\engine\manager">
-      <UniqueIdentifier>{8d83ae45-8021-4348-9ef4-864b880558a7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\image">
       <UniqueIdentifier>{df812af1-06c3-457b-b9e0-ab59b6988e69}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\engine\entity\component\logic">
-      <UniqueIdentifier>{7a8e8516-1e76-4e76-a64c-a55792f22f4e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\engine\entity\component\data">
-      <UniqueIdentifier>{99b3b520-5f6c-4632-91c0-0ec0d87523c7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\engine\collision">
-      <UniqueIdentifier>{5a4fbe24-4cb5-4ff2-8407-bef2bc1d6604}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\engine\system">
-      <UniqueIdentifier>{bd5ba265-b1fd-47cf-9c98-f6b52e938077}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\engine\system">
-      <UniqueIdentifier>{b18fbf82-a05f-4c90-ad26-44a3615d8609}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\engine\message">
-      <UniqueIdentifier>{01815793-c879-4c4f-a9aa-d6813b633c64}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\engine\message">
-      <UniqueIdentifier>{d19aea39-eb47-427e-af26-3f8ac5b8da2e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -117,185 +57,20 @@
     <ClInclude Include="OpenGL.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TileMap.hpp">
-      <Filter>Header Files\map</Filter>
-    </ClInclude>
-    <ClInclude Include="Biome.hpp">
-      <Filter>Header Files\map</Filter>
-    </ClInclude>
-    <ClInclude Include="Location.hpp">
-      <Filter>Header Files\map</Filter>
-    </ClInclude>
-    <ClInclude Include="Noiseutils.hpp">
-      <Filter>Header Files\map</Filter>
-    </ClInclude>
-    <ClInclude Include="System.hpp">
-      <Filter>Header Files\engine\system</Filter>
-    </ClInclude>
-    <ClInclude Include="MovementSystem.hpp">
-      <Filter>Header Files\engine\system</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine.hpp">
-      <Filter>Header Files\engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.hpp">
-      <Filter>Header Files\engine\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureManager.hpp">
-      <Filter>Header Files\engine\manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Timeline.hpp">
-      <Filter>Header Files\engine\entity\timeline</Filter>
-    </ClInclude>
-    <ClInclude Include="Action.hpp">
-      <Filter>Header Files\engine\entity\timeline</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderSystem.hpp">
-      <Filter>Header Files\engine\system</Filter>
-    </ClInclude>
-    <ClInclude Include="TimelineSystem.hpp">
-      <Filter>Header Files\engine\system</Filter>
-    </ClInclude>
-    <ClInclude Include="SystemManager.hpp">
-      <Filter>Header Files\engine\manager</Filter>
-    </ClInclude>
-    <ClInclude Include="EntityManager.hpp">
-      <Filter>Header Files\engine\manager</Filter>
-    </ClInclude>
-    <ClInclude Include="MessageManager.hpp">
-      <Filter>Header Files\engine\manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Message.hpp">
-      <Filter>Header Files\engine\message</Filter>
-    </ClInclude>
-    <ClInclude Include="DamageSystem.hpp">
-      <Filter>Header Files\engine\system</Filter>
-    </ClInclude>
-    <ClInclude Include="AISystem.hpp">
-      <Filter>Header Files\engine\system</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationSystem.hpp">
-      <Filter>Header Files\engine\system</Filter>
-    </ClInclude>
-    <ClInclude Include="EntityFactory.hpp">
-      <Filter>Header Files\engine\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionSystem.hpp">
-      <Filter>Header Files\engine\system</Filter>
-    </ClInclude>
     <ClInclude Include="Quadtree.hpp">
       <Filter>Header Files\utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Sun.hpp">
-      <Filter>Header Files\map</Filter>
-    </ClInclude>
-    <ClInclude Include="ShaderManager.hpp">
-      <Filter>Header Files\engine\manager</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowManager.hpp">
-      <Filter>Header Files\engine\manager</Filter>
-    </ClInclude>
-    <ClInclude Include="RigidBody.hpp">
-      <Filter>Header Files\engine\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="TagManager.hpp">
-      <Filter>Header Files\engine\manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Tags.hpp">
-      <Filter>Header Files\engine\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="AudioSystem.hpp">
-      <Filter>Header Files\engine\system</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.hpp">
-      <Filter>Header Files\engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Skybox.hpp">
-      <Filter>Header Files\map</Filter>
     </ClInclude>
     <ClInclude Include="Assertion.hpp">
       <Filter>Header Files\utility</Filter>
     </ClInclude>
-    <ClInclude Include="LogicComponent.hpp">
-      <Filter>Header Files\engine\entity\component\logic</Filter>
+    <ClInclude Include="Biome.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AIComponent.hpp">
-      <Filter>Header Files\engine\entity\component\data</Filter>
+    <ClInclude Include="Noiseutils.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AnimationComponent.hpp">
-      <Filter>Header Files\engine\entity\component\data</Filter>
-    </ClInclude>
-    <ClInclude Include="AudioComponent.hpp">
-      <Filter>Header Files\engine\entity\component\data</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraComponent.hpp">
-      <Filter>Header Files\engine\entity\component\data</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionComponent.hpp">
-      <Filter>Header Files\engine\entity\component\data</Filter>
-    </ClInclude>
-    <ClInclude Include="DamageComponent.hpp">
-      <Filter>Header Files\engine\entity\component\data</Filter>
-    </ClInclude>
-    <ClInclude Include="InputComponent.hpp">
-      <Filter>Header Files\engine\entity\component\data</Filter>
-    </ClInclude>
-    <ClInclude Include="InteractableComponent.hpp">
-      <Filter>Header Files\engine\entity\component\data</Filter>
-    </ClInclude>
-    <ClInclude Include="LifeComponent.hpp">
-      <Filter>Header Files\engine\entity\component\data</Filter>
-    </ClInclude>
-    <ClInclude Include="LightComponent.hpp">
-      <Filter>Header Files\engine\entity\component\data</Filter>
-    </ClInclude>
-    <ClInclude Include="MovementComponent.hpp">
-      <Filter>Header Files\engine\entity\component\data</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleEmitterComponent.hpp">
-      <Filter>Header Files\engine\entity\component\data</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderComponent.hpp">
-      <Filter>Header Files\engine\entity\component\data</Filter>
-    </ClInclude>
-    <ClInclude Include="TagComponent.hpp">
-      <Filter>Header Files\engine\entity\component\data</Filter>
-    </ClInclude>
-    <ClInclude Include="TimelineComponent.hpp">
-      <Filter>Header Files\engine\entity\component\data</Filter>
-    </ClInclude>
-    <ClInclude Include="TransformComponent.hpp">
-      <Filter>Header Files\engine\entity\component\data</Filter>
-    </ClInclude>
-    <ClInclude Include="Component.hpp">
-      <Filter>Header Files\engine\entity\component</Filter>
-    </ClInclude>
-    <ClInclude Include="LifeSystem.hpp">
-      <Filter>Header Files\engine\system</Filter>
-    </ClInclude>
-    <ClInclude Include="Map.hpp">
-      <Filter>Header Files\map</Filter>
-    </ClInclude>
-    <ClInclude Include="BoundingCircle.hpp">
-      <Filter>Header Files\engine\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="BoundingGeometry.hpp">
-      <Filter>Header Files\engine\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="OOB.hpp">
-      <Filter>Header Files\engine\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="AABB.hpp">
-      <Filter>Header Files\engine\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="Ray.hpp">
-      <Filter>Header Files\engine\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="Intersection.hpp">
-      <Filter>Header Files\engine\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="SweptAABB.hpp">
-      <Filter>Header Files\engine\collision</Filter>
+    <ClInclude Include="TileMap.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -311,89 +86,20 @@
     <ClCompile Include="BitMap.cpp">
       <Filter>Source Files\utility</Filter>
     </ClCompile>
-    <ClCompile Include="Location.cpp">
-      <Filter>Source Files\map</Filter>
-    </ClCompile>
-    <ClCompile Include="TileMap.cpp">
-      <Filter>Source Files\map</Filter>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Biome.cpp">
-      <Filter>Source Files\map</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Noiseutils.cpp">
-      <Filter>Source Files\map</Filter>
-    </ClCompile>
-    <ClCompile Include="MovementSystem.cpp">
-      <Filter>Source Files\engine\system</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine.cpp">
-      <Filter>Source Files\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureManager.cpp">
-      <Filter>Source Files\engine\manager</Filter>
-    </ClCompile>
-    <ClCompile Include="Timeline.cpp">
-      <Filter>Source Files\engine\entity\timeline</Filter>
-    </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Source Files\engine\entity</Filter>
-    </ClCompile>
-    <ClCompile Include="Action.cpp">
-      <Filter>Source Files\engine\entity\timeline</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderSystem.cpp">
-      <Filter>Source Files\engine\system</Filter>
-    </ClCompile>
-    <ClCompile Include="TimelineSystem.cpp">
-      <Filter>Source Files\engine\system</Filter>
-    </ClCompile>
-    <ClCompile Include="EntityManager.cpp">
-      <Filter>Source Files\engine\manager</Filter>
-    </ClCompile>
-    <ClCompile Include="SystemManager.cpp">
-      <Filter>Source Files\engine\manager</Filter>
-    </ClCompile>
-    <ClCompile Include="MessageManager.cpp">
-      <Filter>Source Files\engine\manager</Filter>
-    </ClCompile>
-    <ClCompile Include="DamageSystem.cpp">
-      <Filter>Source Files\engine\system</Filter>
-    </ClCompile>
-    <ClCompile Include="AISystem.cpp">
-      <Filter>Source Files\engine\system</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationSystem.cpp">
-      <Filter>Source Files\engine\system</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionSystem.cpp">
-      <Filter>Source Files\engine\system</Filter>
-    </ClCompile>
-    <ClCompile Include="EntityFactory.cpp">
-      <Filter>Source Files\engine\entity</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sun.cpp">
-      <Filter>Source Files\map</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ShaderManager.cpp">
-      <Filter>Source Files\engine\manager</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowManager.cpp">
-      <Filter>Source Files\engine\manager</Filter>
-    </ClCompile>
-    <ClCompile Include="RigidBody.cpp">
-      <Filter>Source Files\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="TagManager.cpp">
-      <Filter>Source Files\engine\manager</Filter>
-    </ClCompile>
-    <ClCompile Include="AudioSystem.cpp">
-      <Filter>Source Files\engine\system</Filter>
-    </ClCompile>
-    <ClCompile Include="Lifesystem.cpp">
-      <Filter>Source Files\engine\system</Filter>
-    </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Source Files\map</Filter>
+    <ClCompile Include="TileMap.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
