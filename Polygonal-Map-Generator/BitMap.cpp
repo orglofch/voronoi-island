@@ -1,5 +1,9 @@
 #include "BitMap.hpp"
 
+#include <iostream>
+
+using namespace std;
+
 void BitMap::GenerateNoiseMap(const int seed) 
 {
 	noise::module::Perlin myModule;
@@ -37,24 +41,23 @@ void BitMap::SetRange(const double min, const double max)
 
 void BitMap::ApplyRadialGradient(void)
 {
-	double aspect = m_size[0] / m_size[1];
-	Point3D center(m_size[0]/2, m_size[1]/2, 0);
-	double primary = std::max(m_size[0]/2, m_size[1]/2);
+	double aspect = m_size.x / m_size.y;
+	Point3 center(m_size.x/2, m_size.y/2, 0);
+	float primary = std::max(m_size.x/2, m_size.y/2);
 	for (int x = 0; x <= width(); ++x) {
 		for (int y = 0; y <= height(); ++y) {
 			double val = value(x, y);
 	
-			Point3D position(x, y, 0);	
-			if (m_size[0] > m_size[1]) {
-				position[1] = (position[1] - center[1]) * aspect + center[1];
+			Point3 position(x, y, 0);	
+			if (m_size.x > m_size[1]) {
+				position.y = (position.y - center.y) * aspect + center.y;
 			} else {
-				position[0] = (position[0] - center[0]) * aspect + center[0];
+				position.x = (position.x - center.x) * aspect + center.x;
 			}
 
 			// TODO make sure there aren't rounding errors
-			double offset = (position - center).length();
-			double radial_gradient = 
-				pow(std::min(1.0, std::max(0.0, (primary - offset) / primary)), 0.4);
+			float offset = (position - center).length();
+			float radial_gradient =  pow(std::min(1.0f, std::max(0.0f, 1.0f - offset / primary)), 0.4);
 			val *= radial_gradient;
 
 			SetValue(x, y, val);
@@ -85,7 +88,7 @@ void BitMap::GenerateTexture(const Colour &colour)
 	GLubyte* data = (GLubyte *) malloc((size_t)m_size[0] * (size_t)m_size[1] * 4 * sizeof(GLubyte));
 	for (int x = 0; x < m_size[0]; ++x) {
 		for (int y = 0; y < m_size[1]; ++y) { 
-			int i = (y * m_size[0] + x) * 4;
+			int i = (int)(y * m_size[0] + x) * 4;
 			float val = value(x, y);
 			data[i] = (val * colour.R());
 			data[i + 1] = (val * colour.G());

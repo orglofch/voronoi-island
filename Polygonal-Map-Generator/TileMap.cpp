@@ -1,15 +1,12 @@
-#include "TileMap.hpp"
+#include "tilemap.hpp"
 
+#include <algorithm>
 #include <boost\polygon\voronoi.hpp>
 #include <boost\timer.hpp>
 #include <queue> 
 
-#include "OpenGL.hpp"
-
-#include "WindowManager.hpp"
-#include "ShaderManager.hpp"
-#include "Assertion.hpp"
-#include "KDTree.hpp"
+#include "util.hpp"
+#include "kdtree.hpp"
 
 using boost::polygon::voronoi_builder;
 using boost::polygon::voronoi_diagram;
@@ -18,7 +15,6 @@ using boost::timer;
 using std::string;
 using std::vector;
 using std::queue;
-using sf::Shader;
 using std::list;
 
 int Corner::last_id = 0;
@@ -28,12 +24,11 @@ int Location::last_id = 0;
 int Road::last_id = 0;
 int River::last_id = 0;
 
-TileMap::TileMap(const Vector2D &size, const int seed) : 
+TileMap::TileMap(const Vector2 &size, const int seed) : 
 	m_state(STATE_START),
 	m_size(size), 
 	m_seed(seed),
 	m_watermark(0.32),
-	m_sun(Point3D(1000, 0, 0)),
 	m_heightVariation(200),		
 	m_elevation_map(size),
 	m_moisture_map(size) 
@@ -175,7 +170,7 @@ string TileMap::StateToString(State state)
 		case STATE_DONE:
 			return "STATE_DONE";
 	}
-	NOTREACHED();
+	NOT_REACHED();
 	return "???";
 }
 
@@ -202,22 +197,12 @@ TileMap::Style TileMap::StyleForState(State state)
 		case STATE_DONE:
 			return STYLE_FULL;
 	}
-	NOTREACHED();
+	NOT_REACHED();
 	return STYLE_UNDEFINED;
 }
 
 void TileMap::RenderMap(Style style)
 {
-	// Render to texture
-	//m_render_texture.setActive();
-	/*if (!m_render_texture.create(m_size[0], m_size[1])) {
-		std::cout << "Failed to create render texture" << std::endl;
-		exit(EXIT_FAILURE);
-	}*/
-	//m_render_texture.clear();
-	//m_render_texture.setActive(true);
-	sf::Shader::bind(&eShaderManager.GetShader(ShaderManager::SHADER_PASS_THROUGH));
-
 	glPushMatrix();
 	{
 		glMultMatrixd(m_transform.transpose().begin());
@@ -233,26 +218,6 @@ void TileMap::RenderMap(Style style)
 		}
 	}
 	glPopMatrix();
-	//buffer.display();
-	//buffer.setActive(false);
-
-	// Post processing
-	//m_render_texture.setActive(false);
-	/*eWindowManager.window().setActive();
-	glViewport(0, 0, m_size[0], m_size[1]);
-	Shader &shader = eShaderManager.GetShader(ShaderManager::SHADER_TILT_SHIFT);
-
-	shader.setParameter("texture", test);
-	sf::Shader::bind(&shader);
-	glColor3f(1.0, 1.0, 1.0);
-	glBegin(GL_QUADS);
-	{
-		glTexCoord2d(0.0, 0.0); glVertex3d(0.0, 0.0, 0.0);
-		glTexCoord2d(0.0, 1.0); glVertex3d(0.0, m_size[1], 0.0);
-		glTexCoord2d(1.0, 1.0); glVertex3d(m_size[0], m_size[1], 0.0);
-		glTexCoord2d(1.0, 0.0); glVertex3d(m_size[0], 0.0, 0.0);
-	}
-	glEnd();*/
 }
 
 void TileMap::DrawTile(const Tile *tile, const Style style) const
@@ -264,15 +229,15 @@ void TileMap::DrawTile(const Tile *tile, const Style style) const
 			glBegin(GL_LINE_LOOP);
 			{
 				for (const Corner *corner : tile->corners()) {
-					const Point3D &p = corner->position();
-					glVertex3d(p[0], p[1], p[2] * -m_heightVariation);
+					const Point3 &p = corner->position();
+					glVertex3d(p[0], p[1], p[2] * m_heightVariation);
 				}
 			}
 			glEnd();
 			glBegin(GL_POINTS);
 			{
-				const Point3D &p = tile->center();
-				glVertex3d(p[0], p[1], p[2] * -m_heightVariation);
+				const Point3 &p = tile->center();
+				glVertex3d(p[0], p[1], p[2] * m_heightVariation);
 			}
 			glEnd();
 			break;
@@ -281,9 +246,9 @@ void TileMap::DrawTile(const Tile *tile, const Style style) const
 			glBegin(GL_POLYGON);
 			{
 				for (const Corner *corner : tile->corners()) {
-					const Point3D &p = corner->position();
-					glNormal3dv(tile->normal().begin());
-					glVertex3d(p[0], p[1], p[2] * -m_heightVariation);
+					const Point3 &p = corner->position();
+					glNormal3fv(tile->normal().begin());
+					glVertex3d(p[0], p[1], p[2] * m_heightVariation);
 				}
 			}
 			glEnd();
@@ -293,9 +258,9 @@ void TileMap::DrawTile(const Tile *tile, const Style style) const
 			glBegin(GL_POLYGON);
 			{
 				for (const Corner *corner : tile->corners()) {
-					const Point3D &p = corner->position();
-					glNormal3dv(tile->normal().begin());
-					glVertex3d(p[0], p[1], p[2] * -m_heightVariation);
+					const Point3 &p = corner->position();
+					glNormal3fv(tile->normal().begin());
+					glVertex3d(p[0], p[1], p[2] * m_heightVariation);
 				}
 			}
 			glEnd();
@@ -305,9 +270,9 @@ void TileMap::DrawTile(const Tile *tile, const Style style) const
 			glBegin(GL_POLYGON);
 			{
 				for (const Corner *corner : tile->corners()) {
-					const Point3D &p = corner->position();
-					glNormal3dv(tile->normal().begin());
-					glVertex3d(p[0], p[1], p[2] * -m_heightVariation);
+					const Point3 &p = corner->position();
+					glNormal3fv(tile->normal().begin());
+					glVertex3d(p[0], p[1], p[2] * m_heightVariation);
 				}
 			}
 			glEnd();
@@ -317,9 +282,9 @@ void TileMap::DrawTile(const Tile *tile, const Style style) const
 			glBegin(GL_POLYGON);
 			{
 				for (const Corner *corner : tile->corners()) {
-					const Point3D &p = corner->position();
-					glNormal3dv(tile->normal().begin());
-					glVertex3d(p[0], p[1], p[2] * -m_heightVariation);
+					const Point3 &p = corner->position();
+					glNormal3fv(tile->normal().begin());
+					glVertex3d(p[0], p[1], p[2] * m_heightVariation);
 				}
 			}
 			glEnd();
@@ -334,8 +299,8 @@ void TileMap::DrawCoast(void) const
 	for (const Edge *edge : m_edges_coast) {
 		glBegin(GL_LINES);
 		{
-			glVertex3dv(edge->v_edge().first->position().begin());
-			glVertex3dv(edge->v_edge().second->position().begin());
+			glVertex3fv(edge->v_edge().first->position().begin());
+			glVertex3fv(edge->v_edge().second->position().begin());
 		}
 		glEnd();
 	}
@@ -350,8 +315,8 @@ void TileMap::DrawRivers(void) const
 		glBegin(GL_LINE_STRIP);
 		{
 			for (const Corner *corner : river->corners()) {
-				const Point3D &p = corner->position();
-				glVertex3d(p[0], p[1], p[2] * -m_heightVariation - 1);
+				const Point3 &p = corner->position();
+				glVertex3d(p[0], p[1], p[2] * m_heightVariation + 1);
 			}
 		}
 		glEnd();
@@ -366,9 +331,9 @@ void TileMap::DrawLocations(void) const
 	for (Location *location : m_locations) {
 		glBegin(GL_LINES);
 		{
-			const Point3D &p = location->tile()->center();
-			glVertex3d(p[0], p[1], p[2] * -m_heightVariation - 1);
-			glVertex3d(p[0], p[1], p[2] * -m_heightVariation - 15);
+			const Point3 &p = location->tile()->center();
+			glVertex3d(p[0], p[1], p[2] * m_heightVariation + 1);
+			glVertex3d(p[0], p[1], p[2] * m_heightVariation + 15);
 		}
 		glEnd();
 	}
@@ -382,8 +347,8 @@ void TileMap::DrawRoads(void) const
 	for (Road *road : m_roads) {
 		glBegin(GL_LINE_STRIP);
 		{
-			for (const Point3D &p : road->points()) {
-				glVertex3d(p[0], p[1], p[2] * -m_heightVariation - 3);
+			for (const Point3 &p : road->points()) {
+				glVertex3d(p[0], p[1], p[2] * m_heightVariation + 3);
 			}
 		}
 		glEnd();
@@ -392,50 +357,50 @@ void TileMap::DrawRoads(void) const
 
 void TileMap::DrawWater(void) const
 {
-	GLdouble vertex[8][3] = {
+	GLfloat vertex[8][3] = {
 		{ 0.0, 0.0, 0.0 },
 		{ m_size[0], 0.0, 0.0 },
 		{ m_size[0], m_size[1], 0.0 },
 		{ 0.0, m_size[1], 0.0 },
-		{ 0.0, 0.0, m_watermark * -m_heightVariation },
-		{ m_size[0], 0.0, m_watermark * -m_heightVariation },
-		{ m_size[0], m_size[1], m_watermark * -m_heightVariation },
-		{ 0.0, m_size[1], m_watermark * -m_heightVariation },
+		{ 0.0, 0.0, m_watermark * m_heightVariation },
+		{ m_size[0], 0.0, m_watermark * m_heightVariation },
+		{ m_size[0], m_size[1], m_watermark * m_heightVariation },
+		{ 0.0, m_size[1], m_watermark * m_heightVariation },
 	};
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glColor4f(0.0f, 0.0f, 1.0f, 0.5f);
 	glBegin(GL_QUADS);
 	{
-		glVertex3dv(vertex[0]);
-		glVertex3dv(vertex[3]);
-		glVertex3dv(vertex[2]);
-		glVertex3dv(vertex[1]);
+		glVertex3fv(vertex[0]);
+		glVertex3fv(vertex[3]);
+		glVertex3fv(vertex[2]);
+		glVertex3fv(vertex[1]);
 
-		glVertex3dv(vertex[4]);
-		glVertex3dv(vertex[5]);
-		glVertex3dv(vertex[6]);
-		glVertex3dv(vertex[7]);
+		glVertex3fv(vertex[4]);
+		glVertex3fv(vertex[5]);
+		glVertex3fv(vertex[6]);
+		glVertex3fv(vertex[7]);
 
-		glVertex3dv(vertex[0]);
-		glVertex3dv(vertex[1]);
-		glVertex3dv(vertex[5]);
-		glVertex3dv(vertex[4]);
+		glVertex3fv(vertex[0]);
+		glVertex3fv(vertex[1]);
+		glVertex3fv(vertex[5]);
+		glVertex3fv(vertex[4]);
 
-		glVertex3dv(vertex[1]);
-		glVertex3dv(vertex[2]);
-		glVertex3dv(vertex[6]);
-		glVertex3dv(vertex[5]);
+		glVertex3fv(vertex[1]);
+		glVertex3fv(vertex[2]);
+		glVertex3fv(vertex[6]);
+		glVertex3fv(vertex[5]);
 
-		glVertex3dv(vertex[3]);
-		glVertex3dv(vertex[7]);
-		glVertex3dv(vertex[6]);
-		glVertex3dv(vertex[2]);
+		glVertex3fv(vertex[3]);
+		glVertex3fv(vertex[7]);
+		glVertex3fv(vertex[6]);
+		glVertex3fv(vertex[2]);
 
-		glVertex3dv(vertex[0]);
-		glVertex3dv(vertex[4]);
-		glVertex3dv(vertex[7]);
-		glVertex3dv(vertex[3]);
+		glVertex3fv(vertex[0]);
+		glVertex3fv(vertex[4]);
+		glVertex3fv(vertex[7]);
+		glVertex3fv(vertex[3]);
 	}
 	glEnd();
 }
@@ -449,9 +414,6 @@ void TileMap::SetSeed(const int seed)
 void TileMap::Step(const double deltaTime)
 {
 	PerformActionForState(m_state);
-	m_transform = rotation('x', 0.05) * m_transform;
-
-	m_sun.Step(deltaTime);
 }
 
 void TileMap::Generate(void) 
@@ -621,7 +583,6 @@ void TileMap::GenerateRoads(void)
 
 void TileMap::GenerateRoad(Location *l1, Location *l2)
 {
-	// A* search
 	const Tile *start = l1->tile();
 	const Tile *end = l2->tile();
 
@@ -638,8 +599,7 @@ void TileMap::GenerateRoad(Location *l1, Location *l2)
 	}
 
 	g_score[start->id()] = 0;   
-	f_score[start->id()] = g_score[start->id()] + 
-		std::max(start->center()[0] - end->center()[0], start->center()[1] - end->center()[1]);// (start->center() - end->center()).length();
+	f_score[start->id()] = g_score[start->id()] + (start->center() - end->center()).length();
 
 	while (!open.empty()) {
 		double min_f_score = std::numeric_limits<double>::infinity();
@@ -670,8 +630,7 @@ void TileMap::GenerateRoad(Location *l1, Location *l2)
 					came_from[neighbour->id()] = edge->id();
 					g_score[neighbour->id()] = tentative_g_score;
 					f_score[neighbour->id()] = 
-						g_score[neighbour->id()] + 
-						std::max(neighbour->center()[0] - end->center()[0], neighbour->center()[1] - end->center()[1]);// (neighbour->center() - end->center()).length();
+						g_score[neighbour->id()] + (neighbour->center() - end->center()).length();
 					if (std::find(open.begin(), open.end(), neighbour) == open.end()) {
 						open.push_back(neighbour);
 					}
@@ -714,10 +673,7 @@ double TileMap::TileToTileWeight(const Tile *t1, const Tile *t2, const Edge *via
 
 double TileMap::TileToEdgeWeight(const Tile *tile, const Edge *edge) const
 {
-	/* TODO static_assert(edge->d_edge.first == source->index ||
-	edge->d_edge.second == source->index); */
-
-	Vector3D delta_d = (tile->center() - edge->v_center());
+	Vector3 delta_d = (tile->center() - edge->v_center());
 	double length = delta_d.length();
 	// TODO make this independant of height variation
 	double slope = abs(delta_d[2] * m_heightVariation * 2) / sqrt(pow(delta_d[0], 2) + pow(delta_d[1], 2));
@@ -756,15 +712,15 @@ void TileMap::AssignElevation(void)
 void TileMap::AssignNormals(void)
 {
 	for (Tile *tile : m_tiles) {
-		Point3D p0 = tile->center();
-		Point3D p1 = tile->corners().at(0)->position();
-		Point3D p2 = tile->corners().at(1)->position();
-		p0[2] = p0[2] * -m_heightVariation;
-		p1[2] = p1[2] * -m_heightVariation;
-		p2[2] = p2[2] * -m_heightVariation;
+		Point3 p0 = tile->center();
+		Point3 p1 = tile->corners().at(0)->position();
+		Point3 p2 = tile->corners().at(1)->position();
+		p0[2] = p0[2] * m_heightVariation;
+		p1[2] = p1[2] * m_heightVariation;
+		p2[2] = p2[2] * m_heightVariation;
 		tile->normal() = (p1 - p0).cross(p2 - p0);
 		if (tile->normal()[0] == 0 && tile->normal()[1] == 0 && tile->normal()[2] == 0) {
-			tile->normal() = Vector3D(0.0, 0.0, 1.0);
+			tile->normal() = Vector3(0.0, 0.0, 1.0);
 		}
 	}
 
@@ -940,7 +896,7 @@ void TileMap::AssignMoisture(void)
 	KDTree moisture_tree(m_moisture_providers);
 
 	for (Corner *corner : m_corners) {
-		const Point3D &p = corner->position();
+		const Point3 &p = corner->position();
 		double distance = (moisture_tree.Closest(p) - p).length();
 		corner->SetMoisture(std::min(1.0, std::min(1.0, (std::min(1.0, 1 / pow(distance, 0.5) * 3.5) * (0.6)) +
 			m_moisture_map.value((int)p[0], (int)p[1]) * (0.3))));
@@ -1030,16 +986,16 @@ void VoronoiTileMap::GenerateTiles(void)
 			if (corner_map.count(v1) > 0) {
 				c1 = corner_map.at(v1);
 			} else {
-				int x1 = std::max(0.0, std::min(m_size[0], v1->x()));
-				int y1 = std::max(0.0, std::min(m_size[1], v1->y()));
+				int x1 = std::max(0.0f, std::min(m_size.x, (float)v1->x()));
+				int y1 = std::max(0.0f, std::min(m_size.y, (float)v1->y()));
 				c1 =  new Corner(x1, y1);
 			}
 
 			if (corner_map.count(v2) > 0) {
 				c2 = corner_map.at(v2);
 			} else {
-				int x2 = std::max(0.0, std::min(m_size[0], v2->x()));
-				int y2 = std::max(0.0, std::min(m_size[1], v2->y()));
+				int x2 = std::max(0.0f, std::min(m_size.x, (float)v2->x()));
+				int y2 = std::max(0.0f, std::min(m_size.y, (float)v2->y()));
 				c2 = new Corner(x2, y2);
 			}
 

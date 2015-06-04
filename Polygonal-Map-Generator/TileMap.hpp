@@ -5,12 +5,9 @@
 #include <string>
 #include <vector>
 
-#include "OpenGL.hpp"
-
-#include "Algebra.hpp"
-#include "BitMap.hpp"
-#include "Biome.hpp"
-#include "Sun.hpp"
+#include "algebra.hpp"
+#include "bitmap.hpp"
+#include "biome.hpp"
 
 class Corner;
 class Edge;
@@ -33,11 +30,11 @@ public:
 	Biome *biome() { return m_biome; }
 	const Biome *biome() const { return m_biome; }
 
-	Point3D &center() { return m_center; }
-	const Point3D &center() const { return m_center; }
+	Point3 &center() { return m_center; }
+	const Point3 &center() const { return m_center; }
 
-	Vector3D &normal() { return m_normal; }
-	const Vector3D &normal() const { return m_normal; }
+	Vector3 &normal() { return m_normal; }
+	const Vector3 &normal() const { return m_normal; }
 
 	bool is_water() const { return m_is_water; }
 	bool is_ocean() const { return m_is_ocean; }
@@ -67,9 +64,9 @@ private:
 
 	Biome *m_biome;
 
-	Point3D m_center;
+	Point3 m_center;
 
-	Vector3D m_normal;
+	Vector3 m_normal;
 
 	bool m_is_water;
 	bool m_is_ocean;
@@ -99,11 +96,11 @@ public:
 
 	int id() const { return m_id; }
 
-	Point3D &position() { return m_position; }
-	const Point3D &position() const { return m_position; }
+	Point3 &position() { return m_position; }
+	const Point3 &position() const { return m_position; }
 
-	Vector3D &normal() { return m_normal; }
-	const Vector3D &normal() const { return m_normal; }
+	Vector3 &normal() { return m_normal; }
+	const Vector3 &normal() const { return m_normal; }
 
 	bool is_water() const { return m_is_water; }
 	bool is_ocean() const { return m_is_ocean; }
@@ -131,9 +128,9 @@ public:
 private:
 	int m_id;
 
-	Point3D m_position;
+	Point3 m_position;
 
-	Vector3D m_normal;
+	Vector3 m_normal;
 
 	bool m_is_water;
 	bool m_is_ocean;
@@ -176,17 +173,17 @@ public:
 	bool HasDEdge() const { return m_d_edge.first != NULL && m_d_edge.second != NULL; }
 
 	// TODO precompute???
-	Point3D d_center() const { 
+	Point3 d_center() const { 
 		if (m_d_edge.first != NULL && m_d_edge.second != NULL) {
 			return (m_d_edge.first->center() + m_d_edge.second->center()) / 2;
 		}
-		return Point3D();
+		return Point3();
 	}
-	Point3D v_center() const { 
+	Point3 v_center() const { 
 		if (m_v_edge.first != NULL && m_v_edge.second != NULL) {
 			return (m_v_edge.first->position() + m_v_edge.second->position()) / 2;
 		}
-		return Point3D();
+		return Point3();
 	}
 	double v_length() const {
 		if (m_d_edge.first != NULL && m_d_edge.second != NULL) {
@@ -267,15 +264,15 @@ public:
 	std::pair<Location*, Location*> locations() { return m_locations; }
 	const std::pair<Location*, Location*> locations() const { return m_locations; }
 
-	std::vector<Point3D> &points() { return m_points; }
-	const std::vector<Point3D> &points() const { return m_points; }
+	std::vector<Point3> &points() { return m_points; }
+	const std::vector<Point3> &points() const { return m_points; }
 
 private:
 	int m_id;
 
 	std::pair<Location*, Location*> m_locations;
 
-	std::vector<Point3D> m_points;
+	std::vector<Point3> m_points;
 
 	static int last_id;
 };
@@ -305,7 +302,7 @@ struct Chunk
 class TileMap
 {
 public:
-	TileMap(const Vector2D &size, const int seed = rand());
+	TileMap(const Vector2 &size, const int seed = rand());
 	virtual ~TileMap(void);
 
 	void Generate(void);
@@ -318,6 +315,9 @@ public:
 	void SetSeed(const int seed);
 
 	void Step(const double deltaTime);
+
+	float width() { return m_size.x; };
+	float height() { return m_size.y; };
 	
 protected:
 	enum Style {
@@ -392,7 +392,7 @@ protected:
 	BitMap m_moisture_map;
 
 	// Size member
-	Vector2D m_size;
+	Vector2 m_size;
 	int m_columns;
 	int m_rows;
 
@@ -400,12 +400,6 @@ protected:
 
 	double m_heightVariation;
 	double m_watermark;
-
-	Sun m_sun;
-
-	// Shader objects
-	sf::RenderTexture m_render_texture;
-	//sf::RenderTexture m_depth_texture;
 
 	// Graph objects
 	std::vector<Tile*> m_tiles;
@@ -421,13 +415,13 @@ protected:
 	std::vector<Edge*> m_edges_coast;
 	std::vector<Corner*> m_corners_land;
 	std::vector<Corner*> m_corners_water;
-	std::vector<Point3D> m_moisture_providers;
+	std::vector<Point3> m_moisture_providers;
 };
 
 class VoronoiTileMap : public TileMap
 {
 public:
-	VoronoiTileMap(const Vector2D &size, const int sites) : 
+	VoronoiTileMap(const Vector2 &size, const int sites) : 
 		TileMap(size),
 		m_sites(sites) {}
 
@@ -440,7 +434,7 @@ private:
 class HexTileMap : public TileMap 
 {
 public:
-	HexTileMap(const Vector2D &size) : 
+	HexTileMap(const Vector2 &size) : 
 		TileMap(size) {}
 
 private:
@@ -450,7 +444,7 @@ private:
 class GridTileMap : public TileMap
 {
 public:
-	GridTileMap(const Vector2D &size, const int cellSize) : 
+	GridTileMap(const Vector2 &size, const int cellSize) : 
 		TileMap(size), 
 		m_cellSize(cellSize) {}
 
