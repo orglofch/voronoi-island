@@ -3,5 +3,7 @@
 *.sdf
 *.suo
 *.vcxproj*
-*Release/*
-*Debug/*
+Polygonal-Map-Generator/Release/*
+Polygonal-Map-Generator/Debug/*
+Release/*
+Debug/*
